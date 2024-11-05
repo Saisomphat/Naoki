@@ -6255,8 +6255,8 @@ Tabs.Misc:AddButton({
 Tabs.Misc:AddParagraph({
 	Title = "Open Ui",
 	Content = ""
-
 })
+
 Tabs.Misc:AddButton({
 	Title = "Devil Shop",
 	Description = "",
@@ -6266,8 +6266,6 @@ Tabs.Misc:AddButton({
 	end
 })
 
-
-
 Tabs.Misc:AddButton({
 	Title = "Color Haki",
 	Description = "",
@@ -6275,8 +6273,6 @@ Tabs.Misc:AddButton({
 		game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
 	end
 })
-
-
 
 Tabs.Misc:AddButton({
 	Title = "Title Name",
@@ -6290,8 +6286,6 @@ Tabs.Misc:AddButton({
 	end
 })
 
-
-
 Tabs.Misc:AddButton({
 	Title = "Copy Job Id",
 	Description = "",
@@ -6300,14 +6294,14 @@ Tabs.Misc:AddButton({
 	end,
 })
 
+-- Added TextBox for Job ID input
 Tabs.Misc:AddTextBox({
-	Title = "Job Id",
-	Description = "Enter the Job ID",
-	Callback = function(value) -- Capture user input
+	Title = "Enter Job Id",
+	Description = "Input the Job ID you want to join",
+	Callback = function(value)  -- Capture user input
 		_G.Job = value  -- Assign the user input to _G.Job
 	end,
 })
-
 
 Tabs.Misc:AddButton({
 	Title = "JOIN",
@@ -6320,4 +6314,3 @@ Tabs.Misc:AddButton({
 		end
 	end,
 })
-
