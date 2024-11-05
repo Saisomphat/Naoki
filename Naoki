@@ -6295,7 +6295,7 @@ Tabs.Misc:AddButton({
 })
 
 -- Added TextBox for Job ID input that behaves like a chat
-Tabs.Misc:AddTextBox({
+Tabs.Misc:AddToggle({
 	Title = "Job Id",
 	Description = "Type the Job ID to join a specific server.",
 	Callback = function(input)
