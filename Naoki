@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
 	Title = "Naoki Hub",
-	SubTitle = "im very tired now! OORAH IM NOT GIVE UP",
+	SubTitle = "im very tired now!",
 	TabWidth = 160,
 	Size = UDim2.fromOffset(450, 300),
 	Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -6325,6 +6325,7 @@ Tabs.Misc:AddButton({
 
 local main = {}
 
+-- Function to create a textbox UI
 function main:AddTextbox(text, disappear, callback)
 	local Textbox = Instance.new("Frame")
 	local TextboxCorner = Instance.new("UICorner")
@@ -6337,7 +6338,7 @@ function main:AddTextbox(text, disappear, callback)
 	Textbox.Size = UDim2.new(0, 300, 0, 100)
 	Textbox.Position = UDim2.new(0.5, -150, 0.5, -50) -- Center it on the screen
 	Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
-	Textbox.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
+	Textbox.Parent = main.ScreenGui -- Parent to the ScreenGui
 
 	-- Configure Textboxx properties
 	Textboxx.Size = UDim2.new(1, 0, 1, 0)
@@ -6375,6 +6376,10 @@ function main:AddTextbox(text, disappear, callback)
 	end)
 end
 
+-- Create a ScreenGui in the PlayerGui if it doesn't already exist
+main.ScreenGui = Instance.new("ScreenGui")
+main.ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
 -- Add the Job ID input functionality
 Tabs.Misc:AddButton({
 	Title = "Open Job ID Input",
@@ -6382,6 +6387,7 @@ Tabs.Misc:AddButton({
 	Callback = function()
 		main:AddTextbox("Enter Job ID", true, function(input)
 			_G.Job = input  -- Store the inputted Job ID in _G.Job
+			print("Job ID set to: " .. _G.Job) -- Debug print to check input
 		end)
 	end,
 })
@@ -6405,7 +6411,7 @@ Tabs.Misc:AddButton({
 	end,
 })
 
--- Make sure the ScreenGui is created
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+-- Ensure the ScreenGui is created and visible
+main.ScreenGui.Enabled = true
+
 
