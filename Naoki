@@ -6281,34 +6281,29 @@ Tabs.Misc:AddButton({
 
 
 
--- Copy Job Id button
-Tabs.Misc:AddButton({
-	Title = "Copy Job Id",
-	Description = "",
-	Callback = function()
-		setclipboard(tostring(game.JobId))  -- Copies the Job ID to clipboard
-	end,
-})
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Job Id textbox
-Tabs.Misc:AddTextbox({
-	Title = "Job Id",  -- Title for the textbox
-	Description = "",  -- Optional description
-	Callback = function(text)
-		_G.Job = text  -- Assigns the input from the textbox to _G.Job
-	end,
-})
+-- Create the textbox
+local textbox = Instance.new("TextBox")
+textbox.Size = UDim2.new(0, 200, 0, 50)  -- Size of the textbox
+textbox.Position = UDim2.new(0.5, -100, 0.5, -25)  -- Centered position
+textbox.Text = "Enter Job ID"  -- Default text
+textbox.TextColor3 = Color3.new(1, 1, 1)  -- White text
+textbox.BackgroundColor3 = Color3.new(0, 0, 0)  -- Black background
+textbox.Parent = screenGui  -- Add to the ScreenGui
 
--- JOIN button
-Tabs.Misc:AddButton({
-	Title = "JOIN",
-	Description = "",
-	Callback = function()
-		if _G.Job then  -- Check if _G.Job is set
-			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.Job, game.Players.LocalPlayer)
-		else
-			warn("Job ID is not set!")  -- Warn if Job ID is not set
-		end
-	end,
-})
+-- Button to copy Job ID
+local copyButton = Instance.new("TextButton")
+copyButton.Size = UDim2.new(0, 200, 0, 50)  -- Size of the button
+copyButton.Position = UDim2.new(0.5, -100, 0.6, -25)  -- Below the textbox
+copyButton.Text = "Copy Job ID"
+copyButton.BackgroundColor3 = Color3.new(0, 0.5, 0)  -- Green button
+copyButton.TextColor3 = Color3.new(1, 1, 1)  -- White text
+copyButton.Parent = screenGui  -- Add to the ScreenGui
+
+-- Copy Job ID to clipboard when button is clicked
+copyButton.MouseButton1Click:Connect(function()
+	setclipboard(textbox.Text)  -- Copies the text from the textbox
+end)
 
