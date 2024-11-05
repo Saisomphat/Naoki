@@ -6302,11 +6302,12 @@ Tabs.Misc:AddButton({
 
 Tabs.Misc:AddTextBox({
 	Title = "Job Id",
-	Description = "",
-	Callback = function()
-		_G.Job = game.JobId  -- Corrected line: assign game.JobId directly to _G.Job
+	Description = "Enter the Job ID",
+	Callback = function(value) -- Capture user input
+		_G.Job = value  -- Assign the user input to _G.Job
 	end,
 })
+
 
 Tabs.Misc:AddButton({
 	Title = "JOIN",
