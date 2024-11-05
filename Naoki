@@ -6289,7 +6289,7 @@ Tabs.Misc:AddButton({
 	end,
 })
 
-Tabs.Misc:Textbox({
+Tabs.Misc:AddTextbox({
 	Title = "Job Id",
 	Description = "",
 	Callback = function()
