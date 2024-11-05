@@ -6201,6 +6201,75 @@ Number = math.random(1, 1000000)
 
 
 
+-- Define the main UI class if you have one
+local main = {}
+
+function main:AddTextbox(text, disappear, callback)
+	local Textbox = Instance.new("Frame")
+	local TextboxCorner = Instance.new("UICorner")
+	local Textboxx = Instance.new("Frame")
+	local TextboxxCorner = Instance.new("UICorner")
+	local TextboxLabel = Instance.new("TextLabel")
+	local txtbtn = Instance.new("TextButton")
+	local RealTextbox = Instance.new("TextBox")
+	local UICorner = Instance.new("UICorner")
+
+	-- Configure Textbox properties
+	Textbox.Size = UDim2.new(0, 300, 0, 100)
+	Textbox.Position = UDim2.new(0.5, -150, 0.5, -50) -- Center it on the screen
+	Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
+	Textbox.Parent = game.Players.LocalPlayer.PlayerGui -- Assuming you want it in the player's GUI
+
+	-- Configure Textboxx properties
+	Textboxx.Size = UDim2.new(1, 0, 1, 0)
+	Textboxx.BackgroundColor3 = Color3.fromRGB(200, 200, 200) -- Light gray
+	Textboxx.Parent = Textbox
+
+	-- Configure UICorner
+	TextboxCorner.CornerRadius = UDim.new(0, 10)
+	TextboxCorner.Parent = Textbox
+
+	-- Configure TextboxLabel properties
+	TextboxLabel.Size = UDim2.new(1, 0, 0.3, 0)
+	TextboxLabel.Position = UDim2.new(0, 0, 0, 0)
+	TextboxLabel.Text = text
+	TextboxLabel.Parent = Textbox
+
+	-- Configure RealTextbox properties
+	RealTextbox.Size = UDim2.new(1, -20, 0.5, -20) -- Make it fit nicely within the frame
+	RealTextbox.Position = UDim2.new(0, 10, 0.4, 0)
+	RealTextbox.PlaceholderText = "Enter here..."
+	RealTextbox.Parent = Textbox
+
+	-- Configure TextButton properties
+	txtbtn.Size = UDim2.new(1, 0, 0.2, 0)
+	txtbtn.Position = UDim2.new(0, 0, 0.75, 0)
+	txtbtn.Text = "Submit"
+	txtbtn.Parent = Textbox
+
+	-- Button click event
+	txtbtn.MouseButton1Click:Connect(function()
+		callback(RealTextbox.Text) -- Call the callback with the textbox input
+		if disappear then
+			Textbox:Destroy() -- Optionally destroy the textbox after submitting
+		end
+	end)
+end
+
+-- Here’s how you can add it to your Tabs
+Tabs.Misc:AddButton({
+	Title = "Open Job ID Input",
+	Description = "Open a textbox to input Job ID.",
+	Callback = function()
+		main:AddTextbox("Enter Job ID", true, function(input)
+			_G.Job = input  -- Store the inputted Job ID in _G.Job
+		end)
+	end,
+})
+
+-- Rest of your existing code...
+
+-- Hop Server Low Player button (and the rest of your script)
 Tabs.Misc:AddButton({
 	Title = "Hop Server Low Player",
 	Description = "",
@@ -6252,65 +6321,4 @@ Tabs.Misc:AddButton({
 	end
 })
 
-Tabs.Misc:AddParagraph({
-	Title = "Open Ui",
-	Content = ""
-})
-
-Tabs.Misc:AddButton({
-	Title = "Devil Shop",
-	Description = "",
-	Callback = function()
-		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetFruits")
-		game:GetService("Players").LocalPlayer.PlayerGui.Main.FruitShop.Visible = true
-	end
-})
-
-Tabs.Misc:AddButton({
-	Title = "Color Haki",
-	Description = "",
-	Callback = function()
-		game.Players.localPlayer.PlayerGui.Main.Colors.Visible = true
-	end
-})
-
-Tabs.Misc:AddButton({
-	Title = "Title Name",
-	Description = "",
-	Callback = function()
-		local args = {
-			[1] = "getTitles"
-		}
-		game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
-		game.Players.localPlayer.PlayerGui.Main.Titles.Visible = true
-	end
-})
-
-Tabs.Misc:AddButton({
-	Title = "Copy Job Id",
-	Description = "",
-	Callback = function()
-		setclipboard(tostring(game.JobId))  -- Corrected line: removed = true
-	end,
-})
-
--- Added TextBox for Job ID input that behaves like a chat
-Tabs.Misc:AddToggle({
-	Title = "Job Id",
-	Description = "Type the Job ID to join a specific server.",
-	Callback = function(input)
-		_G.Job = input  -- Store the inputted Job ID in _G.Job
-	end,
-})
-
-Tabs.Misc:AddButton({
-	Title = "JOIN",
-	Description = "",
-	Callback = function()
-		if _G.Job then  -- Check if _G.Job is set
-			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.Job, game.Players.LocalPlayer)  -- Corrected line: removed = true
-		else
-			warn("Job ID is not set!")  -- Added warning if Job ID is not set
-		end
-	end,
-})
+-- Add other buttons and functionality as required...
