@@ -6302,7 +6302,7 @@ Tabs.Misc:AddButton({
 })
 
 -- Add a textbox for user input of Job ID
-Tabs.Misc:AddTextBox({
+Tabs.Misc:AddButton({
 	Title = "Job Id",
 	Description = "Enter the Job ID you wish to join:",
 	Callback = function(input)  -- Capture the input from the textbox
@@ -6322,3 +6322,71 @@ Tabs.Misc:AddButton({
 		end
 	end,
 })
+
+local main = {}
+
+-- Function to create a textbox
+function main:AddTextbox(text, disappear, callback)
+	local Textbox = Instance.new("Frame")
+	local TextboxCorner = Instance.new("UICorner")
+	local Textboxx = Instance.new("Frame")
+	local TextboxxCorner = Instance.new("UICorner")
+	local TextboxLabel = Instance.new("TextLabel")
+	local txtbtn = Instance.new("TextButton")
+	local RealTextbox = Instance.new("TextBox")
+	local UICorner = Instance.new("UICorner")
+
+	-- Configure Textbox properties
+	Textbox.Size = UDim2.new(0, 300, 0, 100)
+	Textbox.Position = UDim2.new(0.5, -150, 0.5, -50) -- Center it on the screen
+	Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
+	Textbox.Parent = game.Players.LocalPlayer.PlayerGui -- Assuming you want it in the player's GUI
+
+	-- Configure Textboxx properties
+	Textboxx.Size = UDim2.new(1, 0, 1, 0)
+	Textboxx.BackgroundColor3 = Color3.fromRGB(200, 200, 200) -- Light gray
+	Textboxx.Parent = Textbox
+
+	-- Configure UICorner
+	TextboxCorner.CornerRadius = UDim.new(0, 10)
+	TextboxCorner.Parent = Textbox
+
+	-- Configure TextboxLabel properties
+	TextboxLabel.Size = UDim2.new(1, 0, 0.3, 0)
+	TextboxLabel.Position = UDim2.new(0, 0, 0, 0)
+	TextboxLabel.Text = text
+	TextboxLabel.Parent = Textbox
+
+	-- Configure RealTextbox properties
+	RealTextbox.Size = UDim2.new(1, -20, 0.5, -20) -- Make it fit nicely within the frame
+	RealTextbox.Position = UDim2.new(0, 10, 0.4, 0)
+	RealTextbox.PlaceholderText = "Enter here..."
+	RealTextbox.Parent = Textbox
+
+	-- Configure TextButton properties
+	txtbtn.Size = UDim2.new(1, 0, 0.2, 0)
+	txtbtn.Position = UDim2.new(0, 0, 0.75, 0)
+	txtbtn.Text = "Submit"
+	txtbtn.Parent = Textbox
+
+	-- Button click event
+	txtbtn.MouseButton1Click:Connect(function()
+		callback(RealTextbox.Text) -- Call the callback with the textbox input
+		if disappear then
+			Textbox:Destroy() -- Optionally destroy the textbox after submitting
+		end
+	end)
+end
+
+-- Now add the Job ID input button to the UI
+Tabs.Misc:AddButton({
+	Title = "Open Job ID Input",
+	Description = "Open a textbox to input Job ID.",
+	Callback = function()
+		main:AddTextbox("Enter Job ID", true, function(input)
+			_G.Job = input  -- Store the inputted Job ID in _G.Job
+		end)
+	end,
+})
+
+-- Add other UI elements as needed...
