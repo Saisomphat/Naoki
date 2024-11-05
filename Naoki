@@ -6285,7 +6285,7 @@ Tabs.Misc:AddButton({
 	Title = "Copy Job Id"
 	Description = "",
 	Callback = function()
-		setclipboard(tostring(game.JobId))
+		setclipboard(tostring(game.JobId)) = true
 	end,
 })
 
@@ -6295,7 +6295,7 @@ Tabs.Misc:AddButton({
 	Title = "Job Id"
 	Description = "",
 	Callback = function()
-		_G.Job = value
+		_G.Job = value = true
 	end,
 })
 
@@ -6305,6 +6305,6 @@ Tabs.Misc:AddButton({
 	Title = "JOIN"
 	Description = "",
 	Callback = function()
-		game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
+		game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer) = true
 	end,
 })
