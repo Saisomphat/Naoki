@@ -6294,12 +6294,12 @@ Tabs.Misc:AddButton({
 	end,
 })
 
--- Added TextBox for Job ID input
+-- Added TextBox for Job ID input that behaves like a chat
 Tabs.Misc:AddTextBox({
-	Title = "Enter Job Id",
-	Description = "Input the Job ID you want to join",
-	Callback = function(value)  -- Capture user input
-		_G.Job = value  -- Assign the user input to _G.Job
+	Title = "Job Id",
+	Description = "Type the Job ID to join a specific server.",
+	Callback = function(input)
+		_G.Job = input  -- Store the inputted Job ID in _G.Job
 	end,
 })
 
