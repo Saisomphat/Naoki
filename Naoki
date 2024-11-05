@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
 	Title = "Naoki Hub",
-	SubTitle = "I WILL DO UNTIL I WIN FOR THIS SCRIPT OORAH! SAI NOT GIVEEEEUP",
+	SubTitle = "im very tired now! OORAH IM NOT GIVE UP",
 	TabWidth = 160,
 	Size = UDim2.fromOffset(450, 300),
 	Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -6337,7 +6337,7 @@ function main:AddTextbox(text, disappear, callback)
 	Textbox.Size = UDim2.new(0, 300, 0, 100)
 	Textbox.Position = UDim2.new(0.5, -150, 0.5, -50) -- Center it on the screen
 	Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
-	Textbox.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild("ScreenGui") -- Assuming you have a ScreenGui in the PlayerGui
+	Textbox.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild("ScreenGui")
 
 	-- Configure Textboxx properties
 	Textboxx.Size = UDim2.new(1, 0, 1, 0)
@@ -6375,11 +6375,7 @@ function main:AddTextbox(text, disappear, callback)
 	end)
 end
 
--- Assuming you have a ScreenGui in PlayerGui
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = game.Players.LocalPlayer.PlayerGui
-
--- Now add the Job ID input button to the UI
+-- Add the Job ID input functionality
 Tabs.Misc:AddButton({
 	Title = "Open Job ID Input",
 	Description = "Open a textbox to input Job ID.",
@@ -6390,4 +6386,26 @@ Tabs.Misc:AddButton({
 	end,
 })
 
--- Add other UI elements as needed...
+-- Add a Join button that teleports to the specified Job ID
+Tabs.Misc:AddButton({
+	Title = "JOIN",
+	Description = "Join the specified Job ID.",
+	Callback = function()
+		if _G.Job and _G.Job ~= "" then  -- Check if _G.Job is set and not empty
+			-- Teleport to the Job ID
+			local success, errorMessage = pcall(function()
+				game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.Job, game.Players.LocalPlayer)
+			end)
+			if not success then
+				warn("Teleport failed: " .. errorMessage)  -- Warn if teleport fails
+			end
+		else
+			warn("Job ID is not set or is empty!")  -- Added warning if Job ID is not set or empty
+		end
+	end,
+})
+
+-- Make sure the ScreenGui is created
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
