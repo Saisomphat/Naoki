@@ -6281,30 +6281,34 @@ Tabs.Misc:AddButton({
 
 
 
+-- Copy Job Id button
 Tabs.Misc:AddButton({
 	Title = "Copy Job Id",
 	Description = "",
 	Callback = function()
-		setclipboard(tostring(game.JobId))  -- Corrected line: removed `= true`
+		setclipboard(tostring(game.JobId))  -- Copies the Job ID to clipboard
 	end,
 })
 
+-- Job Id textbox
 Tabs.Misc:AddTextbox({
-	Title = "Job Id",
-	Description = "",
-	Callback = function()
-		_G.Job = game.JobId  -- Corrected line: assign game.JobId directly to _G.Job
+	Title = "Job Id",  -- Title for the textbox
+	Description = "",  -- Optional description
+	Callback = function(text)
+		_G.Job = text  -- Assigns the input from the textbox to _G.Job
 	end,
 })
 
+-- JOIN button
 Tabs.Misc:AddButton({
 	Title = "JOIN",
 	Description = "",
 	Callback = function()
 		if _G.Job then  -- Check if _G.Job is set
-			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.Job, game.Players.LocalPlayer)  -- Corrected line: removed `= true`
+			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.Job, game.Players.LocalPlayer)
 		else
-			warn("Job ID is not set!")  -- Added warning if Job ID is not set
+			warn("Job ID is not set!")  -- Warn if Job ID is not set
 		end
 	end,
 })
+
