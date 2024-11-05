@@ -6257,19 +6257,18 @@ function main:AddTextbox(text, disappear, callback)
 end
 
 -- Here’s how you can add it to your Tabs
-Tabs.Misc:AddButton({
-	Title = "Open Job ID Input",
-	Description = "Open a textbox to input Job ID.",
-	Callback = function()
-		main:AddTextbox("Enter Job ID", true, function(input)
-			_G.Job = input  -- Store the inputted Job ID in _G.Job
-		end)
+-- Assuming you already have the AddTextbox function defined somewhere above in your script
+
+-- Add the Job ID input textbox directly in the Tabs.Misc section
+Tabs.Misc:AddTextBox({
+	Title = "Enter Job ID",
+	Description = "Please enter the Job ID below:",
+	Callback = function(input)
+		_G.Job = input  -- Store the inputted Job ID in _G.Job
 	end,
 })
 
--- Rest of your existing code...
-
--- Hop Server Low Player button (and the rest of your script)
+-- Rest of your existing buttons and functionality
 Tabs.Misc:AddButton({
 	Title = "Hop Server Low Player",
 	Description = "",
