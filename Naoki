@@ -6291,14 +6291,6 @@ Tabs.Misc:AddButton({
 
 
 
-Tabs.Misc:AddTextbox({
-	Title = "Job Id",
-	Description = "",
-	Callback = function(value)
-		_G.Job = value  -- Store the input value directly into _G.Job
-	end,
-})
-
 
 Tabs.Misc:AddButton({
 	Title = "JOIN",
@@ -6309,6 +6301,17 @@ Tabs.Misc:AddButton({
 		else
 			warn("Job ID is not set!")  -- Added warning if Job ID is not set
 		end
+	end,
+})
+
+
+
+
+Tabs.Misc:AddTextbox({
+	Title = "Job Id",
+	Description = "",
+	Callback = function(value)
+		_G.Job = value  -- Store the input value directly into _G.Job
 	end,
 })
 
