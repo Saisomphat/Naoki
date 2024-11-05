@@ -4,11 +4,11 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
 	Title = "Naoki Hub",
-	SubTitle = "im very tired now!",
+	SubTitle = "im very tired now! OORAH",
 	TabWidth = 160,
 	Size = UDim2.fromOffset(450, 300),
 	Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-	Theme = "Darker",
+	Theme = "Blueer",
 	MinimizeKey = Enum.KeyCode.End -- Used when theres no MinimizeKeybind
 })
 local Tabs = {
