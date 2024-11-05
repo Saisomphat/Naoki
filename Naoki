@@ -6281,37 +6281,27 @@ Tabs.Misc:AddButton({
 
 
 
-Tabs.Misc:AddButton({
-	Title = "Copy Job Id",
-	Description = "",
-	Callback = function()
-		setclipboard(tostring(game.JobId))  -- Corrected line: removed = true
-	end,
-})
-
-
-
-
-Tabs.Misc:AddButton({
-	Title = "JOIN",
-	Description = "",
-	Callback = function()
-		if _G.Job then  -- Check if _G.Job is set
-			game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.Job, game.Players.LocalPlayer)  -- Corrected line: removed = true
-		else
-			warn("Job ID is not set!")  -- Added warning if Job ID is not set
-		end
-	end,
-})
-
-
-
-
+-- Add TextBox for entering Job ID
 Tabs.Misc:AddTextbox({
-	Title = "Job Id",
-	Description = "",
-	Callback = function(value)
-		_G.Job = value  -- Store the input value directly into _G.Job
-	end,
+	    Name = "Enter Job ID",
+	    Default = "",
+	    TextDisappear = true,
+	    Callback = function(Value)
+		        _G.JobId = Value  -- Store the entered Job ID in a global variable
+		    end   
+})
+
+-- Add Button to teleport to the specified Job ID
+Tabs.Misc:AddButton({
+	    Title = "Join by Job ID",
+	    Description = "Join the server with the specified Job ID",
+	    Callback = function()
+		        if _G.JobId and _G.JobId ~= "" then
+			            -- Teleport to the server using the entered Job ID
+			            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, _G.JobId, game.Players.LocalPlayer)
+			        else
+			            warn("No Job ID entered!")
+			        end
+		    end
 })
 
