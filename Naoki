@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
 	Title = "Naoki Hub",
-	SubTitle = "im very tired now! OORAH!!",
+	SubTitle = "Join Naoki server for more support! https://discord.gg/naokifamily,
 	TabWidth = 160,
 	Size = UDim2.fromOffset(450, 300),
 	Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
