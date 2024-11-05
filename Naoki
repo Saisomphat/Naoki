@@ -4300,6 +4300,11 @@ do
 		end
 	end
 
+	local ToggleCDK = Tabs.Main:AddToggle("ToggleCDK", {Title = "Auto CDK", Default = false })
+
+	ToggleCDK:OnChanged(function(Value)
+		Auto_Cursed_Dual_Katana = Value
+	end)
 	M:AddSeperator("Dual Curse Katana")
 
 	M:AddToggle("Taken Cursed Dual Katana",_G.AutoCdk,function(value)
