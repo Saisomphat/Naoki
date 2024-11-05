@@ -4,7 +4,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 --------------------------------------------------------------------------------------------------------------------------------------------
 local Window = Fluent:CreateWindow({
 	Title = "Naoki Hub",
-	SubTitle = "im very tired now!",
+	SubTitle = "I WILL DO UNTIL I WIN FOR THIS SCRIPT OORAH! SAI NOT GIVEEEEUP",
 	TabWidth = 160,
 	Size = UDim2.fromOffset(450, 300),
 	Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
@@ -6325,22 +6325,19 @@ Tabs.Misc:AddButton({
 
 local main = {}
 
--- Function to create a textbox
 function main:AddTextbox(text, disappear, callback)
 	local Textbox = Instance.new("Frame")
 	local TextboxCorner = Instance.new("UICorner")
 	local Textboxx = Instance.new("Frame")
-	local TextboxxCorner = Instance.new("UICorner")
 	local TextboxLabel = Instance.new("TextLabel")
 	local txtbtn = Instance.new("TextButton")
 	local RealTextbox = Instance.new("TextBox")
-	local UICorner = Instance.new("UICorner")
 
 	-- Configure Textbox properties
 	Textbox.Size = UDim2.new(0, 300, 0, 100)
 	Textbox.Position = UDim2.new(0.5, -150, 0.5, -50) -- Center it on the screen
 	Textbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White background
-	Textbox.Parent = game.Players.LocalPlayer.PlayerGui -- Assuming you want it in the player's GUI
+	Textbox.Parent = game.Players.LocalPlayer.PlayerGui:WaitForChild("ScreenGui") -- Assuming you have a ScreenGui in the PlayerGui
 
 	-- Configure Textboxx properties
 	Textboxx.Size = UDim2.new(1, 0, 1, 0)
@@ -6377,6 +6374,10 @@ function main:AddTextbox(text, disappear, callback)
 		end
 	end)
 end
+
+-- Assuming you have a ScreenGui in PlayerGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
 -- Now add the Job ID input button to the UI
 Tabs.Misc:AddButton({
